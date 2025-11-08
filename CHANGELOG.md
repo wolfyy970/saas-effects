@@ -22,11 +22,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Package.json exports field order (types now first for better IDE support)
 - Updated @types/react and @types/react-dom to React 19 compatible versions
 
+### Added
+- **SECURITY.md** documentation for security policies and vulnerability reporting
+
 ### Verified
 - ✅ All 92 tests passing with React 19.2.0
 - ✅ TypeScript 5.9.3 compilation successful
 - ✅ Build output unchanged (still ~2.5 KB gzipped)
 - ✅ Backward compatibility maintained (still supports React >=16.8.0)
+- ⚠️ Known development dependency vulnerability (esbuild in vitest) - does not affect published package or end users
 
 ## [2.0.0] - 2025-11-08
 
