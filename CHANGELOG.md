@@ -5,7 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [2.0.0] - 2025-01-XX
+## [2.0.1] - 2025-11-08
+
+### Updated
+- **TypeScript** from 5.3.3 to 5.9.3 (latest stable)
+- **React** (dev) from 18.2.0 to 19.2.0 (latest)
+- **React DOM** (dev) from 18.2.0 to 19.2.0 (latest)
+- **Vite** from 5.0.8 to 6.4.1 (latest)
+- **Vitest** from 1.0.4 to 2.1.9 (latest)
+- **@testing-library/react** from 14.1.2 to 16.0.1 (React 19 compatible)
+- **ESLint** from 8.55.0 to 9.15.0 (latest)
+- **TypeScript ESLint** from 6.14.0 to 8.16.0 (latest)
+- All other dev dependencies to latest stable versions
+
+### Fixed
+- Package.json exports field order (types now first for better IDE support)
+- Updated @types/react and @types/react-dom to React 19 compatible versions
+
+### Verified
+- ✅ All 92 tests passing with React 19.2.0
+- ✅ TypeScript 5.9.3 compilation successful
+- ✅ Build output unchanged (still ~2.5 KB gzipped)
+- ✅ Backward compatibility maintained (still supports React >=16.8.0)
+
+## [2.0.0] - 2025-11-08
 
 ### 🎉 Major Release - TypeScript Rewrite with New Features
 
