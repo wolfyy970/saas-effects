@@ -105,114 +105,66 @@
 
 /* Corner positions - Medium (default) */
 .gradient-corner-bg-tl {
-  left: -150px;
-  top: -150px;
+  left: 0;
+  top: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle at top left, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at center, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
   opacity: 0.6;
   filter: blur(60px);
 }
 
 .gradient-corner-bg-tr {
-  right: -150px;
-  top: -150px;
+  right: 0;
+  top: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle at top right, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
+  transform: translate(50%, -50%);
+  background: radial-gradient(circle at center, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
   opacity: 0.6;
   filter: blur(60px);
 }
 
 .gradient-corner-bg-bl {
-  left: -150px;
-  bottom: -150px;
+  left: 0;
+  bottom: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle at bottom left, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
+  transform: translate(-50%, 50%);
+  background: radial-gradient(circle at center, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
   opacity: 0.6;
   filter: blur(60px);
 }
 
 .gradient-corner-bg-br {
-  right: -150px;
-  bottom: -150px;
+  right: 0;
+  bottom: 0;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle at bottom right, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
+  transform: translate(50%, 50%);
+  background: radial-gradient(circle at center, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%);
   opacity: 0.6;
   filter: blur(60px);
 }
 
 /* Corner size variations */
-.card-corner-wrapper.corner-sm .gradient-corner-bg-tl {
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  top: -100px;
-  filter: blur(40px);
-  opacity: 0.5;
-}
-
-.card-corner-wrapper.corner-sm .gradient-corner-bg-tr {
-  width: 200px;
-  height: 200px;
-  right: -100px;
-  top: -100px;
-  filter: blur(40px);
-  opacity: 0.5;
-}
-
-.card-corner-wrapper.corner-sm .gradient-corner-bg-bl {
-  width: 200px;
-  height: 200px;
-  left: -100px;
-  bottom: -100px;
-  filter: blur(40px);
-  opacity: 0.5;
-}
-
+.card-corner-wrapper.corner-sm .gradient-corner-bg-tl,
+.card-corner-wrapper.corner-sm .gradient-corner-bg-tr,
+.card-corner-wrapper.corner-sm .gradient-corner-bg-bl,
 .card-corner-wrapper.corner-sm .gradient-corner-bg-br {
-  width: 200px;
-  height: 200px;
-  right: -100px;
-  bottom: -100px;
+  width: min(200px, 40%);
+  height: min(200px, 40%);
   filter: blur(40px);
   opacity: 0.5;
 }
 
-.card-corner-wrapper.corner-lg .gradient-corner-bg-tl {
-  width: 400px;
-  height: 400px;
-  left: -200px;
-  top: -200px;
-  filter: blur(80px);
-  opacity: 0.7;
-}
-
-.card-corner-wrapper.corner-lg .gradient-corner-bg-tr {
-  width: 400px;
-  height: 400px;
-  right: -200px;
-  top: -200px;
-  filter: blur(80px);
-  opacity: 0.7;
-}
-
-.card-corner-wrapper.corner-lg .gradient-corner-bg-bl {
-  width: 400px;
-  height: 400px;
-  left: -200px;
-  bottom: -200px;
-  filter: blur(80px);
-  opacity: 0.7;
-}
-
+.card-corner-wrapper.corner-lg .gradient-corner-bg-tl,
+.card-corner-wrapper.corner-lg .gradient-corner-bg-tr,
+.card-corner-wrapper.corner-lg .gradient-corner-bg-bl,
 .card-corner-wrapper.corner-lg .gradient-corner-bg-br {
-  width: 400px;
-  height: 400px;
-  right: -200px;
-  bottom: -200px;
+  width: min(400px, 80%);
+  height: min(400px, 80%);
   filter: blur(80px);
   opacity: 0.7;
 }
@@ -267,6 +219,16 @@
   .card-content {
     padding: 36px;
   }
+
+  /* Scale down corner gradients on tablets */
+  .gradient-corner-bg-tl,
+  .gradient-corner-bg-tr,
+  .gradient-corner-bg-bl,
+  .gradient-corner-bg-br {
+    width: min(250px, 60vw);
+    height: min(250px, 60vw);
+    filter: blur(50px);
+  }
 }
 
 @media (max-width: 480px) {
@@ -282,5 +244,15 @@
 
   .card-content {
     padding: 28px;
+  }
+
+  /* Further scale down on mobile */
+  .gradient-corner-bg-tl,
+  .gradient-corner-bg-tr,
+  .gradient-corner-bg-bl,
+  .gradient-corner-bg-br {
+    width: min(180px, 70vw);
+    height: min(180px, 70vw);
+    filter: blur(40px);
   }
 }

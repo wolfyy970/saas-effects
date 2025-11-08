@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Fixed
+- **Corner Gradient Positioning** - Refactored to use `transform: translate()` for precise centering
+  - Corner gradients now correctly position at the exact card corner
+  - Radial gradient center point now aligns perfectly with card corners
+  - Improved visual aesthetic and integration with cards
+- **Responsive Corner Gradients** - Enhanced responsive behavior
+  - Implemented `min()` CSS function for dynamic sizing based on card dimensions
+  - Added tablet media queries (768px) for optimized gradient scaling
+  - Added mobile media queries (480px) for further gradient reduction
+  - Corner gradients now adapt smoothly across all screen sizes
+- **Dark Mode Toggle** - Improved visibility in demo
+  - Added proper z-index to ensure dark mode button is always visible
+  - Moved dark mode toggle CSS to dedicated stylesheet
+  - Added gradient class toggling for proper dark mode integration
+  - Enhanced button positioning and styling
+
+### Changed
+- **CSS Architecture** - Consolidated corner gradient positioning logic
+  - Reduced code duplication by grouping size variations
+  - Simplified positioning with transform-based approach
+  - More maintainable and consistent gradient behavior
+
 ## [2.0.1] - 2025-11-08
 
 ### Updated
@@ -24,6 +48,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - **SECURITY.md** documentation for security policies and vulnerability reporting
+- **Dark mode toggle button** to demo page for easy testing
+- **GitHub Pages setup** for live demo hosting
+
+### Documentation
+- Updated **README.md** with correct GitHub Pages URL
+- Added dark mode cards to demo features list
+- Enhanced demo.html with v2.0.1 features showcase
 
 ### Verified
 - ✅ All 92 tests passing with React 19.2.0

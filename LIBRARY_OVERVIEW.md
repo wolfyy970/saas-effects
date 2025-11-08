@@ -2,44 +2,61 @@
 
 ## 📦 What's Included
 
-This is a **production-ready component library** for adding beautiful gradient effects to your applications. Available in **both React and vanilla HTML/CSS** versions.
+This is a **production-ready TypeScript component library** for adding beautiful gradient effects to your applications. Available as an **npm package** with React components, plus a **vanilla HTML/CSS** demo for quick evaluation.
 
 ### Files Structure
 
 ```
-gradient-components/
-├── React Version:
-│   ├── GradientComponents.jsx    # React component library
+saas-effects/
+├── src/ (TypeScript Source):
+│   ├── GradientComponents.tsx    # React components (TypeScript)
 │   ├── GradientComponents.css    # Component styles
-│   ├── index.js                  # Clean exports
-│   └── Demo.jsx                  # React examples
+│   ├── types.ts                  # TypeScript interfaces
+│   ├── presets.ts                # Color presets
+│   ├── utils.ts                  # Validation utilities
+│   ├── index.ts                  # Public exports
+│   └── Demo.tsx                  # React demo
 │
-├── Vanilla HTML/CSS Version:
-│   └── demo.html                 # Standalone HTML demo (open in browser!)
+├── dist/ (Built Package):
+│   ├── saas-effects.js           # ESM build
+│   ├── saas-effects.umd.cjs      # UMD build
+│   ├── style.css                 # Extracted CSS
+│   └── index.d.ts                # Type definitions
+│
+├── Vanilla HTML/CSS Demo:
+│   └── demo.html                 # Standalone demo (open in browser!)
 │
 └── Documentation:
     ├── README.md                 # Full documentation
     ├── QUICK_REFERENCE.md        # Cheat sheet
-    ├── WHICH_VERSION.md          # Which version to use?
-    └── LIBRARY_OVERVIEW.md       # This file
+    ├── CHANGELOG.md              # Version history
+    ├── WHICH_VERSION.md          # Installation guide
+    ├── LIBRARY_OVERVIEW.md       # This file
+    └── SECURITY.md               # Security policy
 ```
 
 ---
 
 ## 🚀 Two Ways to Use
 
-### Option 1: React/JSX (For React Apps)
+### Option 1: npm Package (Recommended)
+- ✅ Install via npm/yarn/pnpm
+- ✅ Full TypeScript support with autocomplete
 - ✅ Component-based and reusable
-- ✅ Easy to integrate into React projects
-- ✅ Best for production React applications
+- ✅ Production-ready React components
+- ✅ Built with Vite for optimal bundle size
 
-### Option 2: Vanilla HTML/CSS (No Framework)
+```bash
+npm install saas-effects
+```
+
+### Option 2: Demo/Evaluation (Vanilla HTML/CSS)
 - ✅ Works immediately - just open `demo.html` in a browser
 - ✅ No build tools or npm required
-- ✅ Easy to adapt to any framework (Vue, Angular, etc.)
+- ✅ See all features in action
 - ✅ Perfect for quick evaluation
 
-**Quick Preview:** Just open `demo.html` in your browser to see everything in action!
+**Quick Preview:** Just open `demo.html` in your browser or visit the [live demo](https://wolfyy970.github.io/saas-effects/demo.html)!
 
 ---
 
@@ -59,21 +76,17 @@ gradient-components/
 
 ## 🚀 Quick Start
 
-### 1. Copy files to your project
-```
-src/
-├── components/
-│   └── gradient-components/
-│       ├── GradientComponents.jsx
-│       ├── GradientComponents.css
-│       └── index.js
+### 1. Install the package
+```bash
+npm install saas-effects
 ```
 
 ### 2. Import and use
-```jsx
-import { BackgroundGradient, CardWithCornerAccent } from './components/gradient-components';
-import './components/gradient-components/GradientComponents.css';
+```tsx
+import { BackgroundGradient, CardWithCornerAccent } from 'saas-effects';
+import 'saas-effects/dist/style.css';
 
+// TypeScript types included automatically!
 function App() {
   return (
     <BackgroundGradient colorStart="#7dd3fc" colorEnd="#f472b6">
@@ -95,26 +108,33 @@ function App() {
 
 ## 🎨 Key Features
 
+✅ **TypeScript Native** - Full type safety and autocomplete  
 ✅ **Simple API** - Just 2 components with clear, intuitive props  
 ✅ **Fully Responsive** - Works on all screen sizes  
-✅ **Customizable** - Colors, sizes, directions all configurable  
-✅ **No Dependencies** - Pure React, no external packages needed  
-✅ **Production Ready** - Clean code, well-documented, tested  
-✅ **Performant** - Lightweight, optimized CSS  
+✅ **Customizable** - Colors, sizes, directions, angles all configurable  
+✅ **Zero Dependencies** - No runtime dependencies  
+✅ **Production Ready** - 92+ tests, well-documented, npm published  
+✅ **Performant** - Lightweight ~2.5KB gzipped  
 
 ---
 
 ## 🔧 Props Reference
 
 ### BackgroundGradient
-- `colorStart`, `colorEnd` - Gradient colors (hex)
+- `colorStart`, `colorEnd` - Gradient colors (hex, rgb, rgba, hsl, hsla)
+- `colors` - Multi-color gradient (array of colors)
 - `blur` - `'soft'` | `'normal'` | `'heavy'`
 - `fadeDirection` - `'bottom'` | `'top'` | `'left'` | `'right'` | `'none'`
+- `angle` - Gradient angle (0-360 degrees)
+- `darkMode` - Fade to dark background
+- `preset` - Use preset color combinations
 
 ### CardWithCornerAccent
 - `corner` - `'tl'` | `'tr'` | `'bl'` | `'br'`
-- `colorStart`, `colorEnd` - Gradient colors (hex)
+- `colorStart`, `colorEnd` - Gradient colors (hex, rgb, rgba, hsl, hsla)
 - `size` - `'sm'` | `'md'` | `'lg'`
+- `preset` - Use preset color combinations
+- `darkMode` - Dark card background
 
 ---
 
@@ -167,8 +187,11 @@ function App() {
 ## 📝 Notes
 
 - **Browser support:** Modern browsers (Chrome, Firefox, Safari 14+)
-- **React version:** Works with React 16.8+ (hooks not required)
-- **Size:** Lightweight - ~8KB combined (uncompressed)
+- **React version:** Supports React 16.8+ through React 19+
+- **TypeScript:** Full type definitions included
+- **Size:** ~2.5KB gzipped (production build)
+- **Dependencies:** Zero runtime dependencies
+- **Testing:** 92+ comprehensive tests
 - **Customization:** CSS variables allow easy theming
 
 ---

@@ -76,10 +76,31 @@
 
     /* Header */
     .header {
+      position: relative;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       padding: 80px 40px;
       text-align: center;
+    }
+
+    #darkModeToggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    #darkModeToggle:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
     }
 
     .header h1 {
@@ -457,19 +478,7 @@
     <span class="version-badge">v2.0.1 • TypeScript • Zero Dependencies</span>
     
     <!-- Dark Mode Toggle -->
-    <button id="darkModeToggle" style="
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.2);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    ">
+    <button id="darkModeToggle">
       🌙 Dark Mode
     </button>
   </div>
@@ -1069,16 +1078,19 @@
     // Dark Mode Toggle
     const toggle = document.getElementById('darkModeToggle');
     const body = document.body;
+    const gradients = document.querySelectorAll('.gradient-background');
     
     // Check for saved preference
     const savedMode = localStorage.getItem('darkMode');
     if (savedMode === 'enabled') {
       body.classList.add('dark-mode');
+      gradients.forEach(grad => grad.classList.add('dark-mode'));
       toggle.textContent = '☀️ Light Mode';
     }
     
     toggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
+      gradients.forEach(grad => grad.classList.toggle('dark-mode'));
       
       if (body.classList.contains('dark-mode')) {
         toggle.textContent = '☀️ Light Mode';

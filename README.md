@@ -730,6 +730,19 @@ Check out `demo.html` for a complete vanilla HTML/CSS example. You can use the C
 
 ---
 
+## Documentation
+
+This README provides complete feature documentation and examples. For additional resources:
+
+- **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Quick syntax reference and common patterns
+- **[WHICH_VERSION.md](./WHICH_VERSION.md)** - Installation guide and framework compatibility
+- **[LIBRARY_OVERVIEW.md](./LIBRARY_OVERVIEW.md)** - High-level library overview
+- **[CHANGELOG.md](./CHANGELOG.md)** - Version history and migration guides
+- **[SECURITY.md](./SECURITY.md)** - Security policies and best practices
+- **[examples/](./examples/)** - CodeSandbox and StackBlitz templates
+
+---
+
 ## License
 
 Free to use and modify for your projects!
