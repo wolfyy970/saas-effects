@@ -6,6 +6,21 @@ A lightweight, flexible React component library for creating beautiful gradient 
 
 **Available in both React and vanilla HTML/CSS versions.** Not sure which to use? See [WHICH_VERSION.md](WHICH_VERSION.md)
 
+## 🎨 Live Demo
+
+**[View Interactive Demo →](https://kcwolff.github.io/saas-effects/demo.html)**
+
+See all features, presets, and customization options in action! The demo page showcases:
+- 6 beautiful color presets
+- Custom gradient angles (0-360°)
+- Multi-color gradients
+- Dark mode support
+- Blur variations
+- Fade directions
+- Corner accent cards
+
+Or [download demo.html](demo.html) and open it in your browser to explore locally.
+
 ## Features
 
 ✨ **Two Main Components:**
