@@ -18,34 +18,34 @@ export default function GradientComponentsDemo() {
 
         .demo-section {
           max-width: 1200px;
-          margin: 0 auto 140px;
+          margin: 0 auto 180px;
         }
 
         .demo-section h2 {
           font-size: 2rem;
           font-weight: 700;
           color: #1e293b;
-          margin-bottom: 12px;
+          margin-bottom: 24px;
         }
 
         .demo-section .description {
           font-size: 1rem;
           color: #64748b;
-          margin-bottom: 32px;
+          margin-bottom: 56px;
           font-style: italic;
         }
 
         .cards-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 80px;
+          gap: 120px;
           width: 100%;
         }
 
         .variations-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-          gap: 40px;
+          gap: 60px;
         }
 
         .variation {
@@ -59,7 +59,7 @@ export default function GradientComponentsDemo() {
           font-size: 1.125rem;
           font-weight: 600;
           color: #1e293b;
-          margin-bottom: 12px;
+          margin-bottom: 20px;
         }
 
         .small-bg {
@@ -120,34 +120,34 @@ export default function GradientComponentsDemo() {
           border-radius: 20px;
           font-size: 0.85rem;
           font-weight: 600;
-          margin-bottom: 12px;
+          margin-bottom: 20px;
         }
 
         .card-with-accent h3 {
           font-size: 1.375rem;
           font-weight: 700;
           color: #1e293b;
-          margin: 12px 0 8px 0;
+          margin: 20px 0 16px 0;
         }
 
         .card-with-accent .subtitle {
           font-size: 0.95rem;
           color: #a0aec0;
-          margin: 0 0 4px 0;
+          margin: 0 0 12px 0;
         }
 
         .card-with-accent .title {
           font-size: 1.25rem;
           font-weight: 700;
           color: #1e293b;
-          margin: 4px 0 16px 0;
+          margin: 8px 0 24px 0;
         }
 
         .card-with-accent .price {
           font-size: 2rem;
           font-weight: 700;
           color: #1e293b;
-          margin: 16px 0 24px 0;
+          margin: 24px 0 32px 0;
         }
 
         .card-with-accent .price span {
@@ -159,7 +159,7 @@ export default function GradientComponentsDemo() {
         .btn-primary {
           display: inline-block;
           width: 100%;
-          padding: 12px;
+          padding: 14px;
           background: #1e293b;
           color: white;
           border: none;
@@ -167,7 +167,7 @@ export default function GradientComponentsDemo() {
           font-weight: 600;
           font-size: 0.95rem;
           cursor: pointer;
-          margin-bottom: 24px;
+          margin-bottom: 32px;
           transition: all 0.3s ease;
         }
 
@@ -183,7 +183,7 @@ export default function GradientComponentsDemo() {
         }
 
         .features-list li {
-          padding: 8px 0;
+          padding: 12px 0;
           padding-left: 20px;
           color: #64748b;
           font-size: 0.95rem;
@@ -204,17 +204,25 @@ export default function GradientComponentsDemo() {
           }
 
           .demo-section {
-            margin-bottom: 120px;
+            margin-bottom: 140px;
+          }
+
+          .demo-section h2 {
+            margin-bottom: 20px;
+          }
+
+          .demo-section .description {
+            margin-bottom: 48px;
           }
 
           .cards-grid {
             grid-template-columns: 1fr;
-            gap: 64px;
+            gap: 80px;
           }
 
           .variations-grid {
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 32px;
+            gap: 48px;
           }
 
           .content-wrapper h1 {
@@ -228,7 +236,15 @@ export default function GradientComponentsDemo() {
           }
 
           .demo-section {
-            margin-bottom: 100px;
+            margin-bottom: 120px;
+          }
+
+          .demo-section h2 {
+            margin-bottom: 16px;
+          }
+
+          .demo-section .description {
+            margin-bottom: 40px;
           }
 
           .content-wrapper h1 {
@@ -237,11 +253,11 @@ export default function GradientComponentsDemo() {
 
           .variations-grid {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 40px;
           }
 
           .cards-grid {
-            gap: 56px;
+            gap: 64px;
           }
         }
       `}</style>
