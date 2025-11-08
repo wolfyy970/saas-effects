@@ -1,0 +1,62 @@
+# Source files (users get dist/ only)
+src/
+tests/
+examples/
+
+# Config files
+tsconfig.json
+vite.config.ts
+vitest.config.ts
+.eslintrc.cjs
+.npmrc
+
+# Demo files
+demo.html
+Demo.jsx
+index.html
+
+# Old files (pre-v2.0 - kept for reference but not published)
+GradientComponents.jsx
+GradientComponents.css
+index.js
+
+# Documentation (development only)
+IMPLEMENTATION_SUMMARY.md
+PUBLISH_CHECKLIST.md
+library-enhancement.plan.md
+
+# Git
+.git
+.gitignore
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.cache
+
+# Testing
+coverage/
+
+# Build tools
+node_modules/
+
+# Lock files (let users choose their package manager)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
