@@ -8,7 +8,7 @@ A lightweight, flexible React component library for creating beautiful gradient 
 
 ## 🎨 Live Demo
 
-**[View Interactive Demo →](https://kcwolff.github.io/saas-effects/demo.html)**
+**[View Interactive Demo →](https://wolfyy970.github.io/saas-effects/demo.html)**
 
 See all features, presets, and customization options in action! The demo page showcases:
 - 6 beautiful color presets
