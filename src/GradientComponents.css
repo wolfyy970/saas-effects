@@ -6,6 +6,7 @@
   --gradient-start: #3b82f6;
   --gradient-end: #ec4899;
   --gradient-opacity: 1;
+  --gradient-angle: 135deg;
 }
 
 /* =====================================
@@ -31,7 +32,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  background: var(--gradient-bg, linear-gradient(var(--gradient-angle, 135deg), var(--gradient-start) 0%, var(--gradient-end) 100%));
   opacity: var(--gradient-opacity);
   pointer-events: none;
   z-index: 0;
@@ -83,6 +84,23 @@
 
 .gradient-background.fade-right::after {
   background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1) 85%);
+}
+
+/* Dark mode variations - fade to dark background instead of white */
+.gradient-background.dark-mode::after {
+  background: linear-gradient(to bottom, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 1) 85%);
+}
+
+.gradient-background.dark-mode.fade-top::after {
+  background: linear-gradient(to top, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 1) 85%);
+}
+
+.gradient-background.dark-mode.fade-left::after {
+  background: linear-gradient(to left, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 1) 85%);
+}
+
+.gradient-background.dark-mode.fade-right::after {
+  background: linear-gradient(to right, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.3) 50%, rgba(15, 23, 42, 1) 85%);
 }
 
 /* =====================================

@@ -1,0 +1,85 @@
+{
+  "name": "saas-effects",
+  "version": "2.0.1",
+  "description": "A lightweight React component library for beautiful gradient backgrounds and atmospheric card accents",
+  "type": "module",
+  "main": "./dist/saas-effects.umd.cjs",
+  "module": "./dist/saas-effects.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/saas-effects.js",
+      "require": "./dist/saas-effects.umd.cjs"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md",
+    "QUICK_REFERENCE.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test -- --run && npm run build"
+  },
+  "keywords": [
+    "react",
+    "gradient",
+    "components",
+    "ui",
+    "saas",
+    "design-system",
+    "typescript",
+    "card",
+    "background",
+    "effects",
+    "modern-ui",
+    "react-components"
+  ],
+  "author": "KC",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kcwolff/saas-effects.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kcwolff/saas-effects/issues"
+  },
+  "homepage": "https://github.com/kcwolff/saas-effects#readme",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "@typescript-eslint/eslint-plugin": "^8.16.0",
+    "@typescript-eslint/parser": "^8.16.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "^2.1.8",
+    "eslint": "^9.15.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "jsdom": "^25.0.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.1",
+    "vite-plugin-dts": "^4.3.0",
+    "vitest": "^2.1.8"
+  }
+}
+

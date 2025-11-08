@@ -1,9 +1,9 @@
-import React from 'react';
 import { BackgroundGradient, CardWithCornerAccent } from './GradientComponents';
 import './GradientComponents.css';
 
 /**
  * Demo page showcasing all gradient component variations
+ * Now includes TypeScript types, angle control, multi-color gradients, dark mode, and presets
  */
 
 export default function GradientComponentsDemo() {
@@ -282,16 +282,140 @@ export default function GradientComponentsDemo() {
           </BackgroundGradient>
         </section>
 
-        {/* EXAMPLE 2: Corner Accent Cards */}
+        {/* NEW: Preset System Example */}
         <section className="demo-section">
-          <h2>☁️ Corner Accent Cards</h2>
-          <p className="description">Soft, atmospheric glow behind card corners</p>
+          <h2>🎨 Using Presets</h2>
+          <p className="description">Quick beautiful gradients with preset color combinations</p>
+          
+          <BackgroundGradient 
+            preset="purpleOrange"
+            blur="soft"
+            fadeDirection="bottom"
+          >
+            <div className="content-wrapper">
+              <h1>Preset: Purple Orange</h1>
+              <p>Just use preset="purpleOrange" - no need to specify colors!</p>
+            </div>
+          </BackgroundGradient>
+        </section>
+
+        {/* NEW: Custom Angle Example */}
+        <section className="demo-section">
+          <h2>📐 Custom Gradient Angles</h2>
+          <p className="description">Control the direction of your gradients</p>
+          
+          <div className="variations-grid">
+            <div className="variation">
+              <h4>45° Angle</h4>
+              <BackgroundGradient 
+                colorStart="#7dd3fc"
+                colorEnd="#f472b6"
+                angle={45}
+                blur="normal"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>45°</span>
+              </BackgroundGradient>
+            </div>
+
+            <div className="variation">
+              <h4>90° Angle</h4>
+              <BackgroundGradient 
+                colorStart="#7dd3fc"
+                colorEnd="#f472b6"
+                angle={90}
+                blur="normal"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>90°</span>
+              </BackgroundGradient>
+            </div>
+
+            <div className="variation">
+              <h4>180° Angle</h4>
+              <BackgroundGradient 
+                colorStart="#7dd3fc"
+                colorEnd="#f472b6"
+                angle={180}
+                blur="normal"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>180°</span>
+              </BackgroundGradient>
+            </div>
+          </div>
+        </section>
+
+        {/* NEW: Multi-Color Gradients */}
+        <section className="demo-section">
+          <h2>🌈 Multi-Color Gradients</h2>
+          <p className="description">Create gradients with 3 or more colors</p>
+          
+          <div className="variations-grid">
+            <div className="variation">
+              <h4>3 Colors</h4>
+              <BackgroundGradient 
+                colors={['#7dd3fc', '#a78bfa', '#f472b6']}
+                blur="normal"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>Triple</span>
+              </BackgroundGradient>
+            </div>
+
+            <div className="variation">
+              <h4>4 Colors</h4>
+              <BackgroundGradient 
+                colors={['#10b981', '#06b6d4', '#a78bfa', '#ec4899']}
+                blur="soft"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>Quad</span>
+              </BackgroundGradient>
+            </div>
+
+            <div className="variation">
+              <h4>5 Colors</h4>
+              <BackgroundGradient 
+                colors={['#fb923c', '#f472b6', '#a78bfa', '#7dd3fc', '#10b981']}
+                blur="normal"
+                className="blur-preview"
+              >
+                <span style={{color: '#1e293b', fontWeight: '600'}}>Rainbow</span>
+              </BackgroundGradient>
+            </div>
+          </div>
+        </section>
+
+        {/* NEW: Dark Mode */}
+        <section className="demo-section">
+          <h2>🌙 Dark Mode Support</h2>
+          <p className="description">Gradients that fade to dark backgrounds</p>
+          
+          <BackgroundGradient 
+            colorStart="#a78bfa"
+            colorEnd="#fb923c"
+            blur="soft"
+            fadeDirection="bottom"
+            darkMode={true}
+          >
+            <div className="content-wrapper" style={{color: 'white'}}>
+              <h1 style={{color: 'white'}}>Dark Mode Gradient</h1>
+              <p style={{color: 'rgba(255,255,255,0.9)'}}>Fades to dark background instead of white</p>
+              <button className="cta-button">Explore More</button>
+            </div>
+          </BackgroundGradient>
+        </section>
+
+        {/* EXAMPLE 2: Corner Accent Cards with Presets */}
+        <section className="demo-section">
+          <h2>☁️ Corner Accent Cards with Presets</h2>
+          <p className="description">Soft, atmospheric glow using preset colors</p>
           
           <div className="cards-grid">
             <CardWithCornerAccent
               corner="tl"
-              colorStart="#7dd3fc"
-              colorEnd="#a78bfa"
+              preset="skyPink"
               size="md"
             >
               <span className="badge">Popular</span>
@@ -308,8 +432,7 @@ export default function GradientComponentsDemo() {
 
             <CardWithCornerAccent
               corner="tr"
-              colorStart="#a78bfa"
-              colorEnd="#ec4899"
+              preset="purpleOrange"
               size="md"
             >
               <h3>Pro Plan</h3>
@@ -325,8 +448,7 @@ export default function GradientComponentsDemo() {
 
             <CardWithCornerAccent
               corner="bl"
-              colorStart="#10b981"
-              colorEnd="#06b6d4"
+              preset="coolTeal"
               size="md"
             >
               <h3>Enterprise</h3>
@@ -344,7 +466,7 @@ export default function GradientComponentsDemo() {
 
         {/* EXAMPLE 3: Color Variations */}
         <section className="demo-section">
-          <h2>🌈 Color Variations</h2>
+          <h2>🎨 Color Variations</h2>
           <p className="description">Beautiful color combinations for any design</p>
           
           <div className="variations-grid">
@@ -385,7 +507,7 @@ export default function GradientComponentsDemo() {
             </div>
 
             <div className="variation">
-              <h4>Warm Sunset</h4>
+              <h4>Warm Sunset (Solid)</h4>
               <BackgroundGradient 
                 colorStart="#fb923c"
                 colorEnd="#ef4444"
@@ -442,225 +564,8 @@ export default function GradientComponentsDemo() {
             </div>
           </div>
         </section>
-
-        {/* EXAMPLE 5: Fade Directions */}
-        <section className="demo-section">
-          <h2>🧭 Fade Directions</h2>
-          <p className="description">Control where the gradient fades to white</p>
-          
-          <div className="variations-grid">
-            <div className="variation">
-              <h4>Fade Bottom</h4>
-              <BackgroundGradient 
-                colorStart="#7dd3fc"
-                colorEnd="#f472b6"
-                fadeDirection="bottom"
-                className="blur-preview"
-              >
-                <span style={{color: '#1e293b', fontWeight: '600'}}>↓</span>
-              </BackgroundGradient>
-            </div>
-
-            <div className="variation">
-              <h4>Fade Top</h4>
-              <BackgroundGradient 
-                colorStart="#7dd3fc"
-                colorEnd="#f472b6"
-                fadeDirection="top"
-                className="blur-preview"
-              >
-                <span style={{color: '#1e293b', fontWeight: '600'}}>↑</span>
-              </BackgroundGradient>
-            </div>
-
-            <div className="variation">
-              <h4>Fade Left</h4>
-              <BackgroundGradient 
-                colorStart="#7dd3fc"
-                colorEnd="#f472b6"
-                fadeDirection="left"
-                className="blur-preview"
-              >
-                <span style={{color: '#1e293b', fontWeight: '600'}}>←</span>
-              </BackgroundGradient>
-            </div>
-
-            <div className="variation">
-              <h4>Fade Right</h4>
-              <BackgroundGradient 
-                colorStart="#7dd3fc"
-                colorEnd="#f472b6"
-                fadeDirection="right"
-                className="blur-preview"
-              >
-                <span style={{color: '#1e293b', fontWeight: '600'}}>→</span>
-              </BackgroundGradient>
-            </div>
-
-            <div className="variation">
-              <h4>No Fade (Solid)</h4>
-              <BackgroundGradient 
-                colorStart="#7dd3fc"
-                colorEnd="#f472b6"
-                fadeDirection="none"
-                className="blur-preview"
-              >
-                <span style={{color: 'white', fontWeight: '600'}}>Solid</span>
-              </BackgroundGradient>
-            </div>
-          </div>
-        </section>
-
-        {/* EXAMPLE 6: Corner Sizes */}
-        <section className="demo-section">
-          <h2>📐 Corner Glow Sizes</h2>
-          <p className="description">Adjust the spread and intensity</p>
-          
-          <div className="cards-grid">
-            <CardWithCornerAccent
-              corner="tl"
-              colorStart="#7dd3fc"
-              colorEnd="#a78bfa"
-              size="sm"
-            >
-              <h3>Small Glow</h3>
-              <p>Subtle 150px corner accent</p>
-            </CardWithCornerAccent>
-
-            <CardWithCornerAccent
-              corner="tl"
-              colorStart="#7dd3fc"
-              colorEnd="#a78bfa"
-              size="md"
-            >
-              <h3>Medium Glow</h3>
-              <p>Balanced 250px corner accent</p>
-            </CardWithCornerAccent>
-
-            <CardWithCornerAccent
-              corner="tl"
-              colorStart="#7dd3fc"
-              colorEnd="#a78bfa"
-              size="lg"
-            >
-              <h3>Large Glow</h3>
-              <p>Bold 350px corner accent</p>
-            </CardWithCornerAccent>
-          </div>
-        </section>
-
-        {/* EXAMPLE 7: All Corner Positions */}
-        <section className="demo-section">
-          <h2>📍 Corner Positions</h2>
-          <p className="description">Place gradients in any corner: tl, tr, bl, br - Cards are taller to clearly show corner placement</p>
-          
-          <div className="cards-grid">
-            <CardWithCornerAccent
-              corner="tl"
-              colorStart="#a78bfa"
-              colorEnd="#fb923c"
-              size="md"
-            >
-              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px'}}>
-                <div style={{width: '48px', height: '48px', background: '#f3e8ff', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px'}}>📍</div>
-                <div>
-                  <h3 style={{margin: 0}}>Top Left</h3>
-                  <p className="subtitle" style={{margin: 0}}>corner="tl"</p>
-                </div>
-              </div>
-              <p style={{margin: '16px 0', color: '#64748b', lineHeight: '1.6'}}>
-                The gradient appears in the top-left corner of the card, creating a subtle atmospheric effect that draws the eye naturally. This positioning works exceptionally well for featured content.
-              </p>
-              <div style={{padding: '16px', background: '#f8fafc', borderRadius: '8px', marginTop: '16px'}}>
-                <p style={{margin: '0 0 8px 0', color: '#64748b', fontSize: '0.875rem', fontWeight: '600'}}>Best for:</p>
-                <ul style={{margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.875rem'}}>
-                  <li style={{marginBottom: '4px'}}>Hero cards</li>
-                  <li style={{marginBottom: '4px'}}>Premium content</li>
-                  <li>Featured sections</li>
-                </ul>
-              </div>
-            </CardWithCornerAccent>
-
-            <CardWithCornerAccent
-              corner="tr"
-              colorStart="#a78bfa"
-              colorEnd="#fb923c"
-              size="md"
-            >
-              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px'}}>
-                <div style={{width: '48px', height: '48px', background: '#fef3c7', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px'}}>🎯</div>
-                <div>
-                  <h3 style={{margin: 0}}>Top Right</h3>
-                  <p className="subtitle" style={{margin: 0}}>corner="tr"</p>
-                </div>
-              </div>
-              <p style={{margin: '16px 0', color: '#64748b', lineHeight: '1.6'}}>
-                The gradient appears in the top-right corner, providing visual balance and elegance. Perfect for creating alternating patterns in card grids and maintaining visual interest.
-              </p>
-              <div style={{padding: '16px', background: '#f8fafc', borderRadius: '8px', marginTop: '16px'}}>
-                <p style={{margin: '0 0 8px 0', color: '#64748b', fontSize: '0.875rem', fontWeight: '600'}}>Best for:</p>
-                <ul style={{margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.875rem'}}>
-                  <li style={{marginBottom: '4px'}}>Alternating grids</li>
-                  <li style={{marginBottom: '4px'}}>Secondary content</li>
-                  <li>Call-to-action cards</li>
-                </ul>
-              </div>
-            </CardWithCornerAccent>
-
-            <CardWithCornerAccent
-              corner="bl"
-              colorStart="#a78bfa"
-              colorEnd="#fb923c"
-              size="md"
-            >
-              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px'}}>
-                <div style={{width: '48px', height: '48px', background: '#ecfdf5', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px'}}>🌊</div>
-                <div>
-                  <h3 style={{margin: 0}}>Bottom Left</h3>
-                  <p className="subtitle" style={{margin: 0}}>corner="bl"</p>
-                </div>
-              </div>
-              <p style={{margin: '16px 0', color: '#64748b', lineHeight: '1.6'}}>
-                The gradient appears in the bottom-left corner, grounding the card design with subtle atmospheric color. This positioning adds depth without overwhelming the content above.
-              </p>
-              <div style={{padding: '16px', background: '#f8fafc', borderRadius: '8px', marginTop: '16px'}}>
-                <p style={{margin: '0 0 8px 0', color: '#64748b', fontSize: '0.875rem', fontWeight: '600'}}>Best for:</p>
-                <ul style={{margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.875rem'}}>
-                  <li style={{marginBottom: '4px'}}>Footer sections</li>
-                  <li style={{marginBottom: '4px'}}>Content cards</li>
-                  <li>Support information</li>
-                </ul>
-              </div>
-            </CardWithCornerAccent>
-
-            <CardWithCornerAccent
-              corner="br"
-              colorStart="#a78bfa"
-              colorEnd="#fb923c"
-              size="md"
-            >
-              <div style={{display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px'}}>
-                <div style={{width: '48px', height: '48px', background: '#fff7ed', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px'}}>✨</div>
-                <div>
-                  <h3 style={{margin: 0}}>Bottom Right</h3>
-                  <p className="subtitle" style={{margin: 0}}>corner="br"</p>
-                </div>
-              </div>
-              <p style={{margin: '16px 0', color: '#64748b', lineHeight: '1.6'}}>
-                The gradient appears in the bottom-right corner, creating a sophisticated finishing touch. This position adds warmth and personality while maintaining professional aesthetics.
-              </p>
-              <div style={{padding: '16px', background: '#f8fafc', borderRadius: '8px', marginTop: '16px'}}>
-                <p style={{margin: '0 0 8px 0', color: '#64748b', fontSize: '0.875rem', fontWeight: '600'}}>Best for:</p>
-                <ul style={{margin: 0, paddingLeft: '20px', color: '#94a3b8', fontSize: '0.875rem'}}>
-                  <li style={{marginBottom: '4px'}}>Action cards</li>
-                  <li style={{marginBottom: '4px'}}>Pricing tiers</li>
-                  <li>Feature highlights</li>
-                </ul>
-              </div>
-            </CardWithCornerAccent>
-          </div>
-        </section>
       </div>
     </>
   );
 }
+

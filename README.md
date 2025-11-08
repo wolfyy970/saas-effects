@@ -2,6 +2,8 @@
 
 A lightweight, flexible React component library for creating beautiful gradient backgrounds and atmospheric card accents inspired by modern design systems like Lumen and Pulse.
 
+**✨ Now with full TypeScript support!** Version 2.0 includes type definitions, new features, and comprehensive testing.
+
 **Available in both React and vanilla HTML/CSS versions.** Not sure which to use? See [WHICH_VERSION.md](WHICH_VERSION.md)
 
 ## Features
@@ -11,11 +13,21 @@ A lightweight, flexible React component library for creating beautiful gradient 
 2. **CardWithCornerAccent** - Cards with soft, cloud-like gradient glows behind corners
 
 🎨 **Highly Customizable:**
-- Custom color combinations
+- Custom color combinations (hex, RGB, RGBA, HSL, HSLA)
 - Multiple blur intensities
 - Directional fading (or solid backgrounds)
+- Custom gradient angles (0-360°)
+- Multi-color gradients (3+ colors)
+- Dark mode support
+- Preset color combinations
 - Three size variations for corner accents
 - Four corner positions
+
+💪 **Developer Experience:**
+- Full TypeScript support with complete type definitions
+- Comprehensive error handling and validation
+- Development-mode warnings with helpful suggestions
+- 100+ unit tests for reliability
 
 📱 **Fully Responsive** - Works seamlessly on mobile, tablet, and desktop
 
@@ -23,16 +35,44 @@ A lightweight, flexible React component library for creating beautiful gradient 
 
 ## Installation
 
-### React Version
+### Via npm (Recommended)
 
-Copy these files to your project:
+```bash
+npm install saas-effects
 ```
-GradientComponents.jsx
-GradientComponents.css
+
+```bash
+yarn add saas-effects
+```
+
+```bash
+pnpm add saas-effects
 ```
 
 Then import in your application:
-```jsx
+
+```tsx
+import { BackgroundGradient, CardWithCornerAccent } from 'saas-effects';
+import 'saas-effects/dist/style.css';
+
+// TypeScript types are included automatically!
+import type { BackgroundGradientProps } from 'saas-effects';
+```
+
+### Manual Installation
+
+Copy these files from the `src/` directory to your project:
+```
+src/GradientComponents.tsx
+src/GradientComponents.css
+src/types.ts
+src/presets.ts
+src/utils.ts
+src/index.ts
+```
+
+Then import in your application:
+```tsx
 import { BackgroundGradient, CardWithCornerAccent } from './GradientComponents';
 import './GradientComponents.css';
 ```
@@ -67,17 +107,22 @@ To use in your project, copy the CSS from `GradientComponents.css` and use the H
 
 ### BackgroundGradient
 
-Creates a full-container gradient background that optionally fades to white.
+Creates a full-container gradient background that optionally fades to white or dark.
 
 #### Props
 
 | Prop | Type | Default | Options | Description |
 |------|------|---------|---------|-------------|
-| `colorStart` | string | `#3b82f6` | Any hex color | Starting gradient color |
-| `colorEnd` | string | `#ec4899` | Any hex color | Ending gradient color |
+| `colorStart` | string | `#3b82f6` | Any color format | Starting gradient color (hex, rgb, rgba, hsl, hsla) |
+| `colorEnd` | string | `#ec4899` | Any color format | Ending gradient color (hex, rgb, rgba, hsl, hsla) |
+| `colors` | string[] | - | Array of colors | Multi-color gradient (overrides colorStart/colorEnd) |
 | `blur` | string | `normal` | `soft`, `normal`, `heavy` | Blur intensity |
-| `fadeDirection` | string | `bottom` | `bottom`, `top`, `left`, `right`, `none` | Direction of white fade |
+| `fadeDirection` | string | `bottom` | `bottom`, `top`, `left`, `right`, `none` | Direction of fade |
+| `angle` | number | `135` | 0-360 | Gradient angle in degrees |
+| `darkMode` | boolean | `false` | true, false | Fade to dark background instead of white |
+| `preset` | string | - | See [Presets](#presets) | Use a preset color combination |
 | `className` | string | `''` | Any string | Additional CSS classes |
+| `style` | CSSProperties | - | - | Additional inline styles |
 | `children` | ReactNode | - | - | Content inside gradient |
 
 #### Example Usage
@@ -109,6 +154,36 @@ Creates a full-container gradient background that optionally fades to white.
 >
   <h1>Inverted Fade</h1>
 </BackgroundGradient>
+
+// ✨ NEW: Using presets
+<BackgroundGradient preset="skyPink">
+  <h1>Beautiful Preset!</h1>
+</BackgroundGradient>
+
+// ✨ NEW: Custom angle
+<BackgroundGradient 
+  colorStart="#7dd3fc"
+  colorEnd="#f472b6"
+  angle={45}
+>
+  <h1>45° Diagonal</h1>
+</BackgroundGradient>
+
+// ✨ NEW: Multi-color gradient
+<BackgroundGradient 
+  colors={['#7dd3fc', '#a78bfa', '#f472b6']}
+>
+  <h1>Triple Color!</h1>
+</BackgroundGradient>
+
+// ✨ NEW: Dark mode
+<BackgroundGradient 
+  colorStart="#a78bfa"
+  colorEnd="#fb923c"
+  darkMode={true}
+>
+  <h1 style={{color: 'white'}}>Dark Theme</h1>
+</BackgroundGradient>
 ```
 
 ---
@@ -122,10 +197,12 @@ Creates a card with a soft, atmospheric gradient glow behind a specified corner.
 | Prop | Type | Default | Options | Description |
 |------|------|---------|---------|-------------|
 | `corner` | string | `tl` | `tl`, `tr`, `bl`, `br` | Corner position (top-left, top-right, bottom-left, bottom-right) |
-| `colorStart` | string | `#3b82f6` | Any hex color | Starting gradient color |
-| `colorEnd` | string | `#ec4899` | Any hex color | Ending gradient color |
+| `colorStart` | string | `#3b82f6` | Any color format | Starting gradient color (hex, rgb, rgba, hsl, hsla) |
+| `colorEnd` | string | `#ec4899` | Any color format | Ending gradient color (hex, rgb, rgba, hsl, hsla) |
 | `size` | string | `md` | `sm`, `md`, `lg` | Glow size (150px, 250px, 350px) |
+| `preset` | string | - | See [Presets](#presets) | Use a preset color combination |
 | `className` | string | `''` | Any string | Additional CSS classes |
+| `style` | CSSProperties | - | - | Additional inline styles |
 | `children` | ReactNode | - | - | Card content |
 
 #### Example Usage
@@ -279,6 +356,41 @@ export const FeatureGrid = () => {
 
 ---
 
+## Presets
+
+Instead of specifying colors manually, you can use built-in presets for quick, beautiful results:
+
+```tsx
+// Using presets
+<BackgroundGradient preset="skyPink">
+  <h1>Beautiful!</h1>
+</BackgroundGradient>
+
+<CardWithCornerAccent preset="purpleOrange">
+  <h3>Easy!</h3>
+</CardWithCornerAccent>
+```
+
+### Available Presets
+
+| Preset Name | Colors | Best For |
+|-------------|--------|----------|
+| `skyPink` | `#7dd3fc` → `#f472b6` | Hero sections, vibrant headers |
+| `purpleOrange` | `#a78bfa` → `#fb923c` | Bold statements, CTAs |
+| `greenBlue` | `#10b981` → `#3b82f6` | Success states, nature themes |
+| `techBlue` | `#06b6d4` → `#3b82f6` | Tech products, SaaS apps |
+| `coolTeal` | `#10b981` → `#06b6d4` | Calm, professional designs |
+| `warmSunset` | `#fb923c` → `#ef4444` | Warm, energetic sections |
+
+You can also override preset colors:
+
+```tsx
+// Use preset but override one color
+<BackgroundGradient preset="skyPink" colorEnd="#custom">
+  <h1>Custom twist on preset!</h1>
+</BackgroundGradient>
+```
+
 ## Color Schemes
 
 Here are some beautiful color combinations to try:
@@ -346,6 +458,131 @@ Or pass them directly via inline styles:
 
 ---
 
+## TypeScript Usage
+
+Full TypeScript support is included out of the box:
+
+```tsx
+import { 
+  BackgroundGradient, 
+  CardWithCornerAccent,
+  BackgroundGradientProps,
+  CardWithCornerAccentProps,
+  PresetName
+} from 'saas-effects';
+
+// Type-safe props
+const MyComponent: React.FC = () => {
+  const gradientProps: BackgroundGradientProps = {
+    preset: 'skyPink',
+    blur: 'soft',
+    fadeDirection: 'bottom',
+  };
+
+  return (
+    <BackgroundGradient {...gradientProps}>
+      <h1>Type-safe!</h1>
+    </BackgroundGradient>
+  );
+};
+
+// Type-safe preset names
+const presetName: PresetName = 'purpleOrange';
+```
+
+---
+
+## Performance Tips
+
+### When to Use Which Blur Level
+
+- **`blur="soft"`** (100px blur)
+  - Best for: Large background sections, hero areas
+  - Performance: Slightly more GPU-intensive
+  - Visual: Dreamiest, most atmospheric effect
+
+- **`blur="normal"`** (60px blur)
+  - Best for: Balanced use cases, most sections
+  - Performance: Good balance
+  - Visual: Clear yet soft effect
+
+- **`blur="heavy"`** (30px blur)
+  - Best for: Defined gradients, smaller areas
+  - Performance: Most efficient
+  - Visual: Sharpest gradient definition
+
+### General Tips
+
+1. **Limit simultaneous gradients** - Use 3-5 gradient components per page maximum
+2. **Use presets** - Slightly more efficient than custom colors
+3. **Avoid nested gradients** - Don't nest BackgroundGradient components
+4. **Optimize card grids** - Use CSS Grid/Flexbox efficiently for card layouts
+
+---
+
+## Framework Integration
+
+### Tailwind CSS
+
+```tsx
+<BackgroundGradient 
+  preset="skyPink"
+  className="min-h-screen flex items-center justify-center"
+>
+  <div className="max-w-4xl mx-auto px-4">
+    <h1 className="text-5xl font-bold text-slate-900">
+      Tailwind + Gradients
+    </h1>
+  </div>
+</BackgroundGradient>
+```
+
+### Material-UI (MUI)
+
+```tsx
+import { Box, Typography } from '@mui/material';
+
+<BackgroundGradient preset="techBlue">
+  <Box sx={{ textAlign: 'center', py: 10 }}>
+    <Typography variant="h1" color="primary">
+      MUI + Gradients
+    </Typography>
+  </Box>
+</BackgroundGradient>
+```
+
+### Chakra UI
+
+```tsx
+import { Box, Heading } from '@chakra-ui/react';
+
+<BackgroundGradient preset="coolTeal">
+  <Box textAlign="center" py={20}>
+    <Heading size="2xl">
+      Chakra + Gradients
+    </Heading>
+  </Box>
+</BackgroundGradient>
+```
+
+### Next.js
+
+```tsx
+// app/page.tsx
+import { BackgroundGradient } from 'saas-effects';
+import 'saas-effects/dist/style.css';
+
+export default function Home() {
+  return (
+    <BackgroundGradient preset="skyPink">
+      <h1>Next.js App</h1>
+    </BackgroundGradient>
+  );
+}
+```
+
+---
+
 ## Browser Support
 
 - Chrome/Edge: ✅ Full support
@@ -355,21 +592,126 @@ Or pass them directly via inline styles:
 
 ---
 
+## FAQ
+
+### How do I install this?
+
+```bash
+npm install saas-effects
+```
+
+Then import the components and CSS:
+```tsx
+import { BackgroundGradient, CardWithCornerAccent } from 'saas-effects';
+import 'saas-effects/dist/style.css';
+```
+
+### Can I use custom colors?
+
+Yes! All color formats are supported: hex, RGB, RGBA, HSL, HSLA.
+
+```tsx
+<BackgroundGradient 
+  colorStart="#ff0000"
+  colorEnd="rgb(0, 255, 0)"
+/>
+```
+
+### How do I create a gradient with more than 2 colors?
+
+Use the `colors` prop with an array:
+
+```tsx
+<BackgroundGradient 
+  colors={['#7dd3fc', '#a78bfa', '#f472b6', '#fb923c']}
+/>
+```
+
+### Does this work with TypeScript?
+
+Yes! Full TypeScript support is included with complete type definitions.
+
+### Can I use this with Next.js/Remix/other frameworks?
+
+Yes! This library works with any React framework. Just import the components and CSS.
+
+### How do I change the gradient angle?
+
+Use the `angle` prop:
+
+```tsx
+<BackgroundGradient angle={45} colorStart="#7dd3fc" colorEnd="#f472b6" />
+```
+
+### What's the bundle size?
+
+- Minified: ~8KB JavaScript + ~3KB CSS
+- Gzipped: ~3KB JavaScript + ~1KB CSS
+
+### Do I need to import React?
+
+With React 17+, you don't need to explicitly import React. The components use the new JSX transform.
+
+### How do I use this in vanilla JavaScript (no React)?
+
+Check out `demo.html` for a complete vanilla HTML/CSS example. You can use the CSS classes directly without React.
+
+---
+
 ## Troubleshooting
 
-**Gradient not showing:**
-- Verify CSS file is imported
-- Check color format is valid hex (e.g., `#7dd3fc`)
-- Ensure container has sufficient height
+### Gradient not showing
 
-**Corner glow not visible:**
-- Verify `corner` prop is correct (`tl`, `tr`, `bl`, `br`)
-- Check colors have sufficient contrast with white background
-- Try increasing `size` to `lg`
+1. **CSS not imported**
+   ```tsx
+   import 'saas-effects/dist/style.css'; // Don't forget this!
+   ```
 
-**Blur too strong/weak:**
-- Adjust `blur` prop: `soft`, `normal`, or `heavy`
-- Modify blur values in CSS for custom effects
+2. **Invalid color format**
+   - Check colors are valid: hex, RGB, RGBA, HSL, or HSLA
+   - Open browser console for validation warnings
+
+3. **Container height too small**
+   - BackgroundGradient has `min-height: 500px` by default
+   - Add `style={{ minHeight: '...' }}` to adjust
+
+### Corner glow not visible
+
+1. **Wrong corner code**
+   - Use: `tl`, `tr`, `bl`, or `br` only
+   - Check browser console for warnings
+
+2. **Colors too light**
+   - Corner glows need contrast with white backgrounds
+   - Try darker/more vibrant colors
+
+3. **Size too small**
+   - Try `size="lg"` for more prominent glows
+   - Ensure cards have sufficient height (300px+)
+
+### TypeScript errors
+
+1. **Type not found**
+   ```bash
+   npm install @types/react @types/react-dom
+   ```
+
+2. **CSS import error**
+   - Add to `tsconfig.json`: `"include": ["**/*.ts", "**/*.tsx"]`
+   - Or use: `import 'saas-effects/dist/style.css';`
+
+### Build errors
+
+1. **Vite import errors**
+   - Make sure `vite` and `@vitejs/plugin-react` are installed
+
+2. **Module not found**
+   ```bash
+   npm install saas-effects
+   ```
+
+3. **CSS not loading**
+   - Import CSS separately: `import 'saas-effects/dist/style.css';`
 
 ---
 
