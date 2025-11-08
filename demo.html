@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gradient Accent Components - Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: #f8fafc;
+      padding: 60px 40px;
+    }
+
+    :root {
+      --gradient-start: #3b82f6;
+      --gradient-end: #ec4899;
+      --gradient-opacity: 1;
+    }
+
+    /* ===== BACKGROUND GRADIENTS ===== */
+    .gradient-background {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      min-height: 500px;
+      padding: 80px 40px;
+      margin-bottom: 100px;
+    }
+
+    .gradient-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+      opacity: var(--gradient-opacity);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .gradient-background::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1) 85%);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .gradient-background > * {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Blur variations */
+    .blur-soft::before { filter: blur(100px); }
+    .blur-normal::before { filter: blur(60px); }
+    .blur-heavy::before { filter: blur(30px); }
+
+    /* Fade directions */
+    .fade-none::after { display: none; }
+    .fade-top::after { background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1) 85%); }
+    .fade-left::after { background: linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1) 85%); }
+    .fade-right::after { background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 1) 85%); }
+
+    /* ===== CORNER ACCENTS ===== */
+    .card-corner-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 15px;
+    }
+
+    .gradient-corner-bg {
+      position: absolute;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .corner-tl { left: -10px; top: -10px; width: 250px; height: 250px; background: radial-gradient(circle at top left, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%); opacity: 0.6; filter: blur(50px); }
+    .corner-tr { right: -10px; top: -10px; width: 250px; height: 250px; background: radial-gradient(circle at top right, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%); opacity: 0.6; filter: blur(50px); }
+    .corner-bl { left: -10px; bottom: -10px; width: 250px; height: 250px; background: radial-gradient(circle at bottom left, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%); opacity: 0.6; filter: blur(50px); }
+    .corner-br { right: -10px; bottom: -10px; width: 250px; height: 250px; background: radial-gradient(circle at bottom right, var(--gradient-start) 0%, var(--gradient-end) 40%, transparent 80%); opacity: 0.6; filter: blur(50px); }
+
+    /* Size variations */
+    .size-sm .gradient-corner-bg { width: 150px; height: 150px; filter: blur(35px); opacity: 0.5; }
+    .size-lg .gradient-corner-bg { width: 350px; height: 350px; filter: blur(65px); opacity: 0.7; }
+
+    .card-with-accent {
+      position: relative;
+      z-index: 1;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+      padding: 32px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .card-with-accent:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ===== DEMO STYLES ===== */
+    .demo-section {
+      max-width: 1200px;
+      margin: 0 auto 140px;
+    }
+
+    .demo-section h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .demo-section .description {
+      font-size: 1rem;
+      color: #64748b;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+
+    .content-wrapper {
+      max-width: 600px;
+      text-align: center;
+      color: #1e293b;
+    }
+
+    .content-wrapper h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .content-wrapper p {
+      font-size: 1.125rem;
+      opacity: 0.9;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      padding: 12px 32px;
+      background: #1e293b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      background: #0f172a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 80px;
+    }
+
+    .variations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .variation {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .variation h4 {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .small-bg {
+      min-height: 120px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .card-with-accent h3 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 12px 0 8px 0;
+    }
+
+    .card-with-accent .subtitle {
+      font-size: 0.95rem;
+      color: #a0aec0;
+      margin: 0 0 4px 0;
+    }
+
+    .card-with-accent .price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 16px 0 24px 0;
+    }
+
+    .card-with-accent .price span {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #64748b;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      background: #1e293b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-bottom: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #0f172a;
+      transform: translateY(-1px);
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .features-list li {
+      padding: 8px 0;
+      padding-left: 20px;
+      color: #64748b;
+      font-size: 0.95rem;
+      position: relative;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 50px 30px; }
+      .demo-section { margin-bottom: 120px; }
+      .content-wrapper h1 { font-size: 2rem; }
+      .cards-grid { grid-template-columns: 1fr; gap: 64px; }
+      .variations-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 40px 20px; }
+      .demo-section { margin-bottom: 100px; }
+      .content-wrapper h1 { font-size: 1.5rem; }
+      .variations-grid { grid-template-columns: 1fr; }
+      .cards-grid { gap: 56px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- EXAMPLE 1: Full Background Gradient -->
+  <section class="demo-section">
+    <h2>✨ Full Background Gradient</h2>
+    <p class="description">Vibrant gradient that fades to white at the bottom</p>
+    
+    <div class="gradient-background blur-soft" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6;">
+      <div class="content-wrapper">
+        <h1>Power Your Progress</h1>
+        <p>Beautiful gradient backgrounds for modern web applications</p>
+        <button class="cta-button">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 2: Corner Accent Cards -->
+  <section class="demo-section">
+    <h2>☁️ Corner Accent Cards</h2>
+    <p class="description">Soft, atmospheric glow behind card corners</p>
+    
+    <div class="cards-grid">
+      <!-- Card 1 -->
+      <div class="card-corner-wrapper" style="--gradient-start: #7dd3fc; --gradient-end: #a78bfa;">
+        <div class="gradient-corner-bg corner-tl"></div>
+        <div class="card-with-accent">
+          <span class="badge">Popular</span>
+          <h3>Starter Plan</h3>
+          <p class="subtitle">Perfect for individuals</p>
+          <p class="price">$29<span>/mo</span></p>
+          <button class="btn-primary">Get Started</button>
+          <ul class="features-list">
+            <li>5 projects</li>
+            <li>10GB storage</li>
+            <li>Basic support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card-corner-wrapper" style="--gradient-start: #a78bfa; --gradient-end: #ec4899;">
+        <div class="gradient-corner-bg corner-tr"></div>
+        <div class="card-with-accent">
+          <h3>Pro Plan</h3>
+          <p class="subtitle">For growing teams</p>
+          <p class="price">$79<span>/mo</span></p>
+          <button class="btn-primary">Get Started</button>
+          <ul class="features-list">
+            <li>Unlimited projects</li>
+            <li>100GB storage</li>
+            <li>Priority support</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card-corner-wrapper" style="--gradient-start: #10b981; --gradient-end: #06b6d4;">
+        <div class="gradient-corner-bg corner-bl"></div>
+        <div class="card-with-accent">
+          <h3>Enterprise</h3>
+          <p class="subtitle">Custom solutions</p>
+          <p class="price">Custom</p>
+          <button class="btn-primary">Contact Sales</button>
+          <ul class="features-list">
+            <li>Everything in Pro</li>
+            <li>Dedicated support</li>
+            <li>Custom integrations</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 3: Color Variations -->
+  <section class="demo-section">
+    <h2>🌈 Color Variations</h2>
+    <p class="description">Beautiful color combinations for any design</p>
+    
+    <div class="variations-grid">
+      <div class="variation">
+        <h4>Purple → Orange</h4>
+        <div class="gradient-background small-bg blur-normal" style="--gradient-start: #a78bfa; --gradient-end: #fb923c;">
+          <span style="color: #1e293b; font-size: 12px; font-weight: 600;">Preview</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Sky → Pink</h4>
+        <div class="gradient-background small-bg blur-soft" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6;">
+          <span style="color: #1e293b; font-size: 12px; font-weight: 600;">Preview</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Green → Blue</h4>
+        <div class="gradient-background small-bg blur-heavy" style="--gradient-start: #10b981; --gradient-end: #3b82f6;">
+          <span style="color: #1e293b; font-size: 12px; font-weight: 600;">Preview</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Warm Sunset (Solid)</h4>
+        <div class="gradient-background small-bg blur-normal fade-none" style="--gradient-start: #fb923c; --gradient-end: #ef4444;">
+          <span style="color: white; font-size: 12px; font-weight: 600;">Solid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 4: Blur Variations -->
+  <section class="demo-section">
+    <h2>💫 Blur Variations</h2>
+    <p class="description">Control the softness of gradient effects</p>
+    
+    <div class="variations-grid">
+      <div class="variation">
+        <h4>Soft Blur (100px)</h4>
+        <div class="gradient-background blur-soft" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">Softest</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Normal Blur (60px)</h4>
+        <div class="gradient-background blur-normal" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">Balanced</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Heavy Blur (30px)</h4>
+        <div class="gradient-background blur-heavy" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">Sharpest</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 5: Fade Directions -->
+  <section class="demo-section">
+    <h2>🧭 Fade Directions</h2>
+    <p class="description">Control where the gradient fades to white</p>
+    
+    <div class="variations-grid">
+      <div class="variation">
+        <h4>Fade Bottom</h4>
+        <div class="gradient-background blur-normal" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">↓</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Fade Top</h4>
+        <div class="gradient-background blur-normal fade-top" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">↑</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Fade Left</h4>
+        <div class="gradient-background blur-normal fade-left" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">←</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>Fade Right</h4>
+        <div class="gradient-background blur-normal fade-right" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: #1e293b; font-weight: 600;">→</span>
+        </div>
+      </div>
+
+      <div class="variation">
+        <h4>No Fade (Solid)</h4>
+        <div class="gradient-background blur-normal fade-none" style="--gradient-start: #7dd3fc; --gradient-end: #f472b6; min-height: 150px; border-radius: 8px;">
+          <span style="color: white; font-weight: 600;">Solid</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 6: Corner Sizes -->
+  <section class="demo-section">
+    <h2>📐 Corner Glow Sizes</h2>
+    <p class="description">Adjust the spread and intensity</p>
+    
+    <div class="cards-grid">
+      <div class="card-corner-wrapper size-sm" style="--gradient-start: #7dd3fc; --gradient-end: #a78bfa;">
+        <div class="gradient-corner-bg corner-tl"></div>
+        <div class="card-with-accent">
+          <h3>Small Glow</h3>
+          <p>Subtle 150px corner accent</p>
+        </div>
+      </div>
+
+      <div class="card-corner-wrapper" style="--gradient-start: #7dd3fc; --gradient-end: #a78bfa;">
+        <div class="gradient-corner-bg corner-tl"></div>
+        <div class="card-with-accent">
+          <h3>Medium Glow</h3>
+          <p>Balanced 250px corner accent</p>
+        </div>
+      </div>
+
+      <div class="card-corner-wrapper size-lg" style="--gradient-start: #7dd3fc; --gradient-end: #a78bfa;">
+        <div class="gradient-corner-bg corner-tl"></div>
+        <div class="card-with-accent">
+          <h3>Large Glow</h3>
+          <p>Bold 350px corner accent</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXAMPLE 7: All Corner Positions -->
+  <section class="demo-section">
+    <h2>📍 Corner Positions</h2>
+    <p class="description">Place gradients in any corner: tl, tr, bl, br - Cards are taller to clearly show corner placement</p>
+    
+    <div class="cards-grid">
+      <div class="card-corner-wrapper" style="--gradient-start: #a78bfa; --gradient-end: #fb923c;">
+        <div class="gradient-corner-bg corner-tl"></div>
+        <div class="card-with-accent">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: #f3e8ff; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">📍</div>
+            <div>
+              <h3 style="margin: 0;">Top Left</h3>
+              <p class="subtitle" style="margin: 0;">corner="tl"</p>
+            </div>
+          </div>
+          <p style="margin: 16px 0; color: #64748b; line-height: 1.6;">
+            The gradient appears in the top-left corner of the card, creating a subtle atmospheric effect that draws the eye naturally. This positioning works exceptionally well for featured content.
+          </p>
+          <div style="padding: 16px; background: #f8fafc; border-radius: 8px; margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #64748b; font-size: 0.875rem; font-weight: 600;">Best for:</p>
+            <ul style="margin: 0; padding-left: 20px; color: #94a3b8; font-size: 0.875rem;">
+              <li style="margin-bottom: 4px;">Hero cards</li>
+              <li style="margin-bottom: 4px;">Premium content</li>
+              <li>Featured sections</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-corner-wrapper" style="--gradient-start: #a78bfa; --gradient-end: #fb923c;">
+        <div class="gradient-corner-bg corner-tr"></div>
+        <div class="card-with-accent">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: #fef3c7; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🎯</div>
+            <div>
+              <h3 style="margin: 0;">Top Right</h3>
+              <p class="subtitle" style="margin: 0;">corner="tr"</p>
+            </div>
+          </div>
+          <p style="margin: 16px 0; color: #64748b; line-height: 1.6;">
+            The gradient appears in the top-right corner, providing visual balance and elegance. Perfect for creating alternating patterns in card grids and maintaining visual interest.
+          </p>
+          <div style="padding: 16px; background: #f8fafc; border-radius: 8px; margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #64748b; font-size: 0.875rem; font-weight: 600;">Best for:</p>
+            <ul style="margin: 0; padding-left: 20px; color: #94a3b8; font-size: 0.875rem;">
+              <li style="margin-bottom: 4px;">Alternating grids</li>
+              <li style="margin-bottom: 4px;">Secondary content</li>
+              <li>Call-to-action cards</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-corner-wrapper" style="--gradient-start: #a78bfa; --gradient-end: #fb923c;">
+        <div class="gradient-corner-bg corner-bl"></div>
+        <div class="card-with-accent">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: #ecfdf5; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">🌊</div>
+            <div>
+              <h3 style="margin: 0;">Bottom Left</h3>
+              <p class="subtitle" style="margin: 0;">corner="bl"</p>
+            </div>
+          </div>
+          <p style="margin: 16px 0; color: #64748b; line-height: 1.6;">
+            The gradient appears in the bottom-left corner, grounding the card design with subtle atmospheric color. This positioning adds depth without overwhelming the content above.
+          </p>
+          <div style="padding: 16px; background: #f8fafc; border-radius: 8px; margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #64748b; font-size: 0.875rem; font-weight: 600;">Best for:</p>
+            <ul style="margin: 0; padding-left: 20px; color: #94a3b8; font-size: 0.875rem;">
+              <li style="margin-bottom: 4px;">Footer sections</li>
+              <li style="margin-bottom: 4px;">Content cards</li>
+              <li>Support information</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-corner-wrapper" style="--gradient-start: #a78bfa; --gradient-end: #fb923c;">
+        <div class="gradient-corner-bg corner-br"></div>
+        <div class="card-with-accent">
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: #fff7ed; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 24px;">✨</div>
+            <div>
+              <h3 style="margin: 0;">Bottom Right</h3>
+              <p class="subtitle" style="margin: 0;">corner="br"</p>
+            </div>
+          </div>
+          <p style="margin: 16px 0; color: #64748b; line-height: 1.6;">
+            The gradient appears in the bottom-right corner, creating a sophisticated finishing touch. This position adds warmth and personality while maintaining professional aesthetics.
+          </p>
+          <div style="padding: 16px; background: #f8fafc; border-radius: 8px; margin-top: 16px;">
+            <p style="margin: 0 0 8px 0; color: #64748b; font-size: 0.875rem; font-weight: 600;">Best for:</p>
+            <ul style="margin: 0; padding-left: 20px; color: #94a3b8; font-size: 0.875rem;">
+              <li style="margin-bottom: 4px;">Action cards</li>
+              <li style="margin-bottom: 4px;">Pricing tiers</li>
+              <li>Feature highlights</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
